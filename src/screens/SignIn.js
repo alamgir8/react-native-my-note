@@ -1,52 +1,44 @@
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
-import { SignInSvg } from "../svg";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <Image
         source={require("../../assets/Sign_in.png")}
         style={{
           alignSelf: "center",
-          //   alignItems: "center",
+          // alignItems: "center",
           width: 250,
           height: 250,
         }}
       />
       <Text style={styles.loginText}>Never forget your notes</Text>
-      <View
-        style={{ paddingHorizontal: 16, paddingVertical: 24, marginBottom: 20 }}
-      >
-        <TextInput placeholder="Email Address" style={styles.input} />
-        <TextInput
-          placeholder="Password"
-          style={styles.input}
-          secureTextEntry
-        />
+      <View style={{ paddingHorizontal: 16, paddingVertical: 24 }}>
+        <Input placeholder="Email Address" />
+        <Input placeholder="Password" secureTextEntry />
       </View>
       <View
         style={{
-          //   flex: 1,
+          flex: 1,
+          // flexDirection: "col",
           justifyContent: "flex-end",
           alignItems: "center",
+          marginBottom: 50,
         }}
       >
         <Button
           title="Login"
-          customStyle={{ alignSelf: "center", marginTop: 20 }}
+          customStyle={{ alignSelf: "center", marginBottom: 60 }}
         />
-        <Pressable>
-          <Text>Don't have an account?</Text>
+        <Pressable onPress={() => navigation.navigate("SignUp")}>
+          <Text>
+            Don't have an account?{" "}
+            <Text style={{ color: "green", fontWeight: "bold" }}>Sign Up</Text>
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -60,11 +52,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "bold",
     textAlign: "center",
-  },
-  input: {
-    height: 48,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-    marginBottom: 20,
   },
 });
